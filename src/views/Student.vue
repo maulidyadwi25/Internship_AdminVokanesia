@@ -19,6 +19,25 @@
         <div class="card m-b-30">
           <div class="card-body">
             <h4 class="mt-0 header-title mb-4">Student</h4>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Select</label>
+              <div class="col-sm-10">
+                  <select class="form-control w-50 m-2">
+                    <option disabled>Short by</option>
+                    <option>Name</option>
+                    <option>Email</option>
+                    <option>Contact</option>
+                    <option>Address</option>
+                    <option>Status</option>
+                  </select>
+                  <select class="form-control w-50 m-2">
+                    <option disabled>Short by</option>
+                    <option>Ascending</option>
+                    <option>Discending</option>
+                  </select>
+              </div>
+              <button>Ok</button>
+            </div>
             <div class="table-responsive">
               <table class="table table-hover mb-0">
                 <thead>
@@ -34,21 +53,30 @@
                 </thead>
                 <tbody>
                   <tr v-for="item in data" v-bind:key="item.id">
-                    <td>{{item.id}}</td>
-                    <td>{{item.name}}</td>
-                    <td>{{item.email }}</td>
-                    <td>{{item.contact}}</td>
-                    <td>{{item.address}}</td>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.email }}</td>
+                    <td>{{ item.contact }}</td>
+                    <td>{{ item.address }}</td>
                     <td>
-                      <button class="btn-success" v-if="item.status=='verified'">{{item.status}}</button>
-                      <button class="btn-warning" v-else>{{item.status}}</button>
+                      <button
+                        class="btn-success"
+                        v-if="item.status == 'verified'"
+                      >
+                        {{ item.status }}
+                      </button>
+                      <button class="btn-warning" v-else>
+                        {{ item.status }}
+                      </button>
                     </td>
                     <td>
                       <button
                         @click="show(item.id)"
                         type="button"
                         class="btn btn-primary waves-effect waves-light"
-                      >detail</button>
+                      >
+                        detail
+                      </button>
                     </td>
                   </tr>
                 </tbody>
@@ -56,22 +84,38 @@
             </div>
             <nav aria-label="...">
               <ul class="pagination">
-                <li v-if="current_page>1" v-on:click="back()" class="page-item">
+                <li
+                  v-if="current_page > 1"
+                  v-on:click="back()"
+                  class="page-item"
+                >
                   <a class="page-link">Previous</a>
                 </li>
-                <li v-if="current_page>1" v-on:click="back()" class="page-item">
-                  <a class="page-link">{{current_page-1}}</a>
+                <li
+                  v-if="current_page > 1"
+                  v-on:click="back()"
+                  class="page-item"
+                >
+                  <a class="page-link">{{ current_page - 1 }}</a>
                 </li>
                 <li class="page-item active">
                   <a class="page-link">
-                    {{current_page}}
+                    {{ current_page }}
                     <span class="sr-only">(current)</span>
                   </a>
                 </li>
-                <li v-if="lastPage>current_page" v-on:click="next()" class="page-item">
-                  <a class="page-link">{{current_page+1}}</a>
+                <li
+                  v-if="lastPage > current_page"
+                  v-on:click="next()"
+                  class="page-item"
+                >
+                  <a class="page-link">{{ current_page + 1 }}</a>
                 </li>
-                <li v-if="lastPage>current_page" v-on:click="next()" class="page-item">
+                <li
+                  v-if="lastPage > current_page"
+                  v-on:click="next()"
+                  class="page-item"
+                >
                   <a class="page-link">Next</a>
                 </li>
               </ul>
@@ -92,15 +136,30 @@
         <div class="modal-content">
           <div class="modal-header">
             <div class="row w-100 px-5 pb-5">
-              <h5 class="modal-title mt-0" id="myModalLabel">Detail Student ( {{detail.id}} )</h5>
+              <h5 class="modal-title mt-0" id="myModalLabel">
+                Detail Student ( {{ detail.id }} )
+              </h5>
               <div class="col-12">
                 <div class="card m-b-30">
                   <div class="card-body">
-                    <div v-if="detail.photo == null" class="thumb empty"/>
-                    <div v-else class="thumb" v-bind:style="{ backgroundImage: 'url(http://localhost:8001/temp/' +detail.photo+')' }" />
-                    
+                    <div v-if="detail.photo == null" class="thumb empty" />
+                    <div
+                      v-else
+                      class="thumb"
+                      v-bind:style="{
+                        backgroundImage:
+                          'url(http://localhost:8001/temp/' +
+                          detail.photo +
+                          ')',
+                      }"
+                    />
+
                     <div class="form-group row">
-                      <label for="example-text-input" class="col-sm-2 col-form-label">Name</label>
+                      <label
+                        for="example-text-input"
+                        class="col-sm-2 col-form-label"
+                        >Name</label
+                      >
                       <div class="col-sm-10">
                         <input
                           class="form-control"
@@ -111,7 +170,11 @@
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="example-email-input" class="col-sm-2 col-form-label">Email</label>
+                      <label
+                        for="example-email-input"
+                        class="col-sm-2 col-form-label"
+                        >Email</label
+                      >
                       <div class="col-sm-10">
                         <input
                           class="form-control"
@@ -122,7 +185,11 @@
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="example-text-input" class="col-sm-2 col-form-label">Birth Day</label>
+                      <label
+                        for="example-text-input"
+                        class="col-sm-2 col-form-label"
+                        >Birth Day</label
+                      >
                       <div class="col-sm-10">
                         <input
                           class="form-control"
@@ -133,7 +200,11 @@
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="example-text-input" class="col-sm-2 col-form-label">contact</label>
+                      <label
+                        for="example-text-input"
+                        class="col-sm-2 col-form-label"
+                        >contact</label
+                      >
                       <div class="col-sm-10">
                         <input
                           class="form-control"
@@ -144,7 +215,11 @@
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="example-text-input" class="col-sm-2 col-form-label">Birth Day</label>
+                      <label
+                        for="example-text-input"
+                        class="col-sm-2 col-form-label"
+                        >Birth Day</label
+                      >
                       <div class="col-sm-10">
                         <input
                           class="form-control"
@@ -155,20 +230,46 @@
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="example-text-input" class="col-sm-2 col-form-label">Address</label>
+                      <label
+                        for="example-text-input"
+                        class="col-sm-2 col-form-label"
+                        >Address</label
+                      >
                       <div class="col-sm-10">
-                        <textarea class="form-control" v-model="detail.address" id="text-area" />
+                        <textarea
+                          class="form-control"
+                          v-model="detail.address"
+                          id="text-area"
+                        />
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="example-text-input" class="col-sm-2 col-form-label">Status</label>
+                      <label
+                        for="example-text-input"
+                        class="col-sm-2 col-form-label"
+                        >Status</label
+                      >
                       <div class="col-sm-10">
-                        <button v-if="detail.status=='verified'" class="btn-success">Verified</button>
-                        <button v-if="detail.status=='unverified'" class="btn-warning">Unverified</button>
+                        <button
+                          v-if="detail.status == 'verified'"
+                          class="btn-success"
+                        >
+                          Verified
+                        </button>
+                        <button
+                          v-if="detail.status == 'unverified'"
+                          class="btn-warning"
+                        >
+                          Unverified
+                        </button>
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="example-text-input" class="col-sm-2 col-form-label">Balance</label>
+                      <label
+                        for="example-text-input"
+                        class="col-sm-2 col-form-label"
+                        >Balance</label
+                      >
                       <div class="col-sm-10">
                         <input
                           class="form-control"
@@ -187,7 +288,12 @@
               </div>
             </div>
 
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -254,7 +360,7 @@ export default {
         });
     },
     save($id) {
-      let conf = { headers: { "Authorization" : 'Bearer ' + this.key } };
+      let conf = { headers: { Authorization: "Bearer " + this.key } };
       let form = new FormData();
       form.append("name", this.detail.name);
       form.append("email", this.detail.email);
@@ -262,16 +368,16 @@ export default {
       form.append("photo", this.detail.photo);
       form.append("address", this.detail.address);
       form.append("balance", this.detail.balance);
-      axios.post(base_url + "/update", form, conf)
-      .then(response => {
+      axios
+        .post(base_url + "/update", form, conf)
+        .then((response) => {
           this.fetchData();
           this.message = response.data.message;
           this.$bvToast.show("message");
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
-
     },
   },
   mounted() {
